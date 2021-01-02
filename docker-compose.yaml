@@ -1,0 +1,26 @@
+version: "3.8"
+services: 
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:8.6.0-community
+    networks:
+      sonarqube:
+        aliases:
+          - sonarqube
+    volumes:
+      - ./conf:/opt/sonarqube/conf
+      - ./data:/opt/sonarqube/data
+      - ./logs:/opt/sonarqube/logs
+      - ./extensions:/opt/sonarqube/extensions
+    ports:
+      - 4408:9000
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+      #SONAR_JDBC_URL: url
+      #SONAR_JDBC_USERNAME: sonar
+      #SONAR_JDBC_PASSWORD: sonar
+
+networks:
+  sonarqube:
+    driver: bridge
+    
