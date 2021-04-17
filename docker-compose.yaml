@@ -34,20 +34,6 @@ services:
       sonarqube:
         aliases: 
           - postgresql
-  
-  nginx:
-    container_name: sonarqube_nginx
-    image: nginx:stable
-    volumes:
-      - ./certs:/app/certs:ro
-      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
-    networks:
-      sonarqube:
-        aliases:
-          - nginx
-    ports:
-      - 80:80
-      - 443:443
 
 volumes:
   sonarqube_postgres:
